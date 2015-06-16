@@ -1,1 +1,257 @@
-My Page
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <!-- utf-8 -->
+    <meta charset="utf-8">
+    <!-- stop zoom -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- copyrights -->
+    <meta name="author" content="M. Zimmermann - www.hs-offenburg.de; & G.Seilheimer - www.contic.de /">
+    <meta name="co-author" content="C. Merschroth /">
+    <!-- favicon -->
+    <link rel="shortcut icon" href="img/favicon.ico">
+
+    <title>Touristik App - Demo</title>
+
+    <!-- 1. css jquery Mobile -->
+    <link rel="stylesheet" href="lib/jquery/jquery.mobile-1.4.2.min.css" />
+
+    <!-- 2. js jquery -->
+    <script type="text/javascript" src="lib/jquery/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="lib/jquery/jquery.mobile-1.4.2.min.js"></script>
+
+    <!-- 3. js external -->
+    <script type="text/javascript" src="https://maps.google.com/maps/api/js?sensor=true"></script> <!-- Google-Maps -->
+
+    <!-- Eigene JS-Bibliotheken -->
+
+    <!-- 4. Model (logic) -->
+    <script type="text/javascript" src="js/model.js"></script>
+    <!-- 5. events -->
+    <script type="text/javascript" src="js/controller.js"></script>
+    
+
+</head>
+
+<body>
+
+<!--------------------------------------------------------------------------------------------------------->
+<!-- PAGE INDEX -->
+<!--------------------------------------------------------------------------------------------------------->
+    <section data-role="page" id="page-index" data-title="Touristik App - Startseite | page-index">
+
+        <!---------------------------------------------------------------------------------------------->
+        <!-- HEADER // headline | image -->
+        <!---------------------------------------------------------------------------------------------->
+        <header data-role="header" class="ui-header ui-bar-c">
+
+            <h1>Touristik App</h1>
+            <img src="img/jqm-logo.png" width="30" class="ui-btn-right"/>
+
+        </header><!-- /header -->
+
+        <!---------------------------------------------------------------------------------------------->
+        <!-- CONTENT -->
+        <!---------------------------------------------------------------------------------------------->
+        <article class="ui-content">
+
+            <!---------------------------------------------------------------->
+            <!-- LOCATION - Image + Links || Optional Grid / Block a/b -->
+            <!---------------------------------------------------------------->
+
+            <img src="img/jqm-logo.png" width="200" />
+
+            <p>
+                <a href="" id="toAttraktionButton" data-role="button">Touristische Attraktion suchen</a>
+                <a href="#page-lampe" data-role="button" class="ui-disabled">Taschenlampe</a>
+                <a href="#page-kamera" data-role="button" class="ui-disabled">Kamerafunktionen</a>
+                <a href="#page-mirkofon" data-role="button" class="ui-disabled">Audiofunktionen</a>
+                <a href="#page-nfc" data-role="button" class="ui-disabled">NFC</a>
+            </p>
+
+        </article><!-- /content -->
+
+        <!---------------------------------------------------------------------------------------------->
+        <!-- FOOTER -->
+        <!---------------------------------------------------------------------------------------------->
+        <footer data-role="footer" class="ui-footer ui-bar-c" role="contentinfo">
+
+            <h6>2014 by Demo</h6>
+
+        </footer><!-- /footer -->
+
+    </section><!-- /page -->
+
+<!--------------------------------------------------------------------------------------------------------->
+<!-- PAGE ATTRAKTION -->
+<!--------------------------------------------------------------------------------------------------------->
+    <section data-role="page" id="page-attraktion" data-title="Touristik App - Details | page-attraktion">
+
+        <!---------------------------------------------------------------------------------------------->
+        <!-- HEADER -->
+        <!---------------------------------------------------------------------------------------------->
+        <header data-role="header" class="ui-header ui-bar-c">
+
+            <h1>Attraktion</h1>
+            <a href="#" data-icon="back" data-rel="back">Zur&uuml;ck</a>
+
+        </header><!-- /header -->
+
+        <!---------------------------------------------------------------------------------------------->
+        <!-- CONTENT -->
+        <!---------------------------------------------------------------------------------------------->
+        <article class="ui-content">
+
+            <p><strong>Details:</strong></p>
+
+            <!---------------------------------------------------------------->
+            <!-- LOCATION - Details - collapsible-set / collapsible / -->
+            <!---------------------------------------------------------------->
+            <div data-role="collapsible-set" data-theme="c" data-content-theme="d">  <!-- Location Infos -->
+
+                <!---------------------------------------------------------------->
+                <!-- LOCATION // id="beschrLocation..." => description -->
+                <!---------------------------------------------------------------->
+                <div data-role="collapsible" data-collapsed="false">
+
+                    <h3>Kurzinfos</h3>
+                    <h3 id="beschrLocationContentTop"></h3>
+                    <p id="beschrLocationContent"></p>
+
+                </div> <!-- /Review Beschreibung -->
+                <!---------------------------------------------------------------->
+                <!-- LOCATION // id="adr.../tel.../mail..." / description -->
+                <!---------------------------------------------------------------->
+                <div data-role="collapsible">
+
+                    <h3>Kontaktdaten</h3>
+                    <p><strong>Adresse:</strong></p>
+                    <p id="adrLocation"></p>
+                    <!-- <br /> -->
+                    <p><strong>Telefon</strong>:</p>
+                    <p id="telLocation"></p>
+                    <a id="telLocationLink">Link</a>
+                    <!-- <br /> -->
+                    <p><strong>E-Mail</strong>:</p>
+                    <p id="mailLocation"></p>
+                    <a id="mailLocationLink">Link</a>
+
+                </div> <!-- /Review Kontaktdaten -->
+                <!---------------------------------------------------------------->
+                <!-- LOCATION // id="imgLocation" / listview / ul  -->
+                <!---------------------------------------------------------------->
+                <div id="imgLocation" data-role="collapsible">
+
+                    <h3>Bildergalerie</h3>
+                    <ul data-role="listview" >
+                    </ul>
+
+                </div> <!-- Review Images -->
+
+            </div> <!-- /collapsible-set -->
+
+            <!---------------------------------------------------------------->
+            <!-- LOCATION - Review // form elements -->
+            <!---------------------------------------------------------------->
+            <div data-role="collapsible-set" data-theme="c" data-content-theme="d"> <!--Review -->
+
+                <div data-role="collapsible" data-collapsed="true" data-collapsed-icon="heart" data-theme="e" data-content-theme="c">
+
+                    <h3>Meine Wertung</h3>
+
+                    <!---------------------------------------------------------------->
+                    <!-- ui-field-contain / label / range 0-6 "angebot" -->
+                    <!---------------------------------------------------------------->
+                    <div class="ui-field-contain">
+
+                        <label id="labelAngebot" for="angebot">Angebot</label>
+                        <input type="range" id="angebot" data-mini="true" data-highlight="true" value="0" min="0" max="6" />
+
+                    </div> <!-- /Review Slider Angebot -->
+
+                    <!---------------------------------------------------------------->
+                    <!-- ui-field-contain / label / select / default=mittel "preise" -->
+                    <!---------------------------------------------------------------->
+                    <div class="ui-field-contain">
+
+                        <label for="preise">Preise</label>
+                        <select id="preise" data-mini="true">
+                            <option value="1">günstig</option>
+                            <option value="2" selected="selected">mittel</option>
+                            <option value="3">teuer</option>
+                            <option value="4">sehr teuer</option>
+                        </select>
+
+                    </div> <!-- /Review Auswahl Preisverh&auml;ltnis -->
+
+                    <!---------------------------------------------------------------->
+                    <!-- ui-field-contain / label / select-flipswitch "gemuetlich" default=nein -->
+                    <!---------------------------------------------------------------->
+
+                    <fieldset>
+                        <div class="ui-field-contain">
+                            <label for="gemuetlich">gem&uuml;tlich</label>
+                            <select id="gemuetlich" data-role="flipswitch" data-mini="true">
+                                <option value="nein" selected="selected">Nein</option>
+                                <option value="ja">Ja</option>
+                            </select>
+                        </div> <!-- /Review Auswahl ja/nein -->
+                    </fieldset>
+
+                    <!---------------------------------------------------------------->
+                    <!-- ui-field-contain / label / textarea "kommentar" -->
+                    <!---------------------------------------------------------------->
+                    <div class="ui-field-contain">
+
+                        <label for="kommentar">Meine Kommentare:</label>
+                        <textarea id="kommentar" data-mini="true"></textarea>
+
+                    </div> <!-- /Review Kommentar -->
+
+                    <!---------------------------------------------------------------->
+                    <!-- navbar / ul / li / a -->
+                    <!---------------------------------------------------------------->
+                    <div data-role="navbar">
+
+                        <ul>
+                            <li>
+                                <a id="delLocationReview" href="#" data-icon="delete">Löschen</a>
+                            </li>
+                            <li>
+                                <a id="saveLocationReview" href="#" data-icon="check">Speichern</a>
+                            </li>
+                        </ul>
+
+                    </div> <!-- /Review Aktionen -->
+
+                </div> <!-- /collapsible -->
+
+            </div> <!-- /collapsible-set -->
+
+            <!---------------------------------------------------------------->
+            <!-- KARTEANSICHT -->
+            <!---------------------------------------------------------------->
+
+            <h3>Kartenansicht</h3>
+
+            <div id="karteAusgabe" style="height: 500px; width: 500px;"></div>
+            <p id="adresseAusgabe"></p>
+
+        </article><!-- /content -->
+
+        <!---------------------------------------------------------------------------------------------->
+        <!-- FOOTER -->
+        <!---------------------------------------------------------------------------------------------->
+        <footer data-role="footer" class="ui-footer ui-bar-c" role="contentinfo">
+
+            <h6>2014 by Demo</h6>
+
+        </footer><!-- /footer -->
+
+    </section><!-- /page -->
+
+</body>
+
+</html>
